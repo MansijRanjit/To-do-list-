@@ -1,0 +1,67 @@
+body{
+    background: rgb(204, 204, 220);
+}
+.filters{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+
+
+.task-input input{
+    height: 30px;
+    width: 300px;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #999;
+    padding: 0 20px;
+}
+
+.task-input button{
+    height: 30px;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 25px;
+    background-color: rgb(64, 255, 47);
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.filters{
+    display: flex;
+    padding: 30px 0px;
+    gap: 60px;
+
+    span{
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    span.active{
+        color: lightseagreen;
+    }
+}
+
+.task-box{
+    width: 800px;
+    background: lightblue;
+    list-style: none;
+    .task{
+        font-size: 20px;
+        border-bottom: 2px solid gray;
+    }
+    label{
+        display: flex;
+        align-items: center;
+        justify-content:space-between;
+        //gap: 350px;
+        padding: 20px 40px;
+    }
+}
+
+.task label p.checked{
+    text-decoration: line-through;
+}
