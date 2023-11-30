@@ -1,3 +1,10 @@
+@mixin inputDeco{
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #999;
+    padding: 0 20px;
+}
 body{
     background: rgb(204, 204, 220);
 }
@@ -19,17 +26,21 @@ body{
     }
 }
 
-
+.search {
+    padding-left: 50px;
+     
+    input{
+        height: 30px;
+        width: 500px;
+        @include inputDeco();
+    }
+}
 
 .task-input input{
+    margin-top: 20px;
     height: 30px;
     width: 300px;
-    outline: none;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #999;
-    padding: 0 20px;
-
+    @include inputDeco();
 }
 
 .task-input button{
@@ -43,13 +54,11 @@ body{
     font-size: 16px;
 }
 
-.filters{
 
-}
 
 .task-box{
     width: 800px;
-    background: lightblue;
+    background: rgb(218, 218, 218);
     list-style: none;
     .task{
         font-size: 20px;

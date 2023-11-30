@@ -313,11 +313,37 @@ body {
 
 .filters {
   display: flex;
-  justify-content: center;
-  padding-bottom: 30px;
+  padding: 30px 0px;
+  gap: 60px;
+}
+.filters span {
+  cursor: pointer;
+  font-size: 20px;
+}
+.filters span.active {
+  color: lightseagreen;
+}
+@media screen and (max-width: 480px) {
+  .filters {
+    padding-bottom: 40px;
+  }
+}
+
+.search {
+  padding-left: 50px;
+}
+.search input {
+  height: 30px;
+  width: 500px;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #999;
+  padding: 0 20px;
 }
 
 .task-input input {
+  margin-top: 20px;
   height: 30px;
   width: 300px;
   outline: none;
@@ -338,22 +364,9 @@ body {
   font-size: 16px;
 }
 
-.filters {
-  display: flex;
-  padding: 30px 0px;
-  gap: 60px;
-}
-.filters span {
-  cursor: pointer;
-  font-size: 20px;
-}
-.filters span.active {
-  color: lightseagreen;
-}
-
 .task-box {
   width: 800px;
-  background: lightblue;
+  background: rgb(218, 218, 218);
   list-style: none;
 }
 .task-box .task {
@@ -375,6 +388,7 @@ body {
   padding: 0;
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 36px;
 }
 @media screen and (max-width: 768px) {
   .container {

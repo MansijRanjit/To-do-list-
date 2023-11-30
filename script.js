@@ -89,3 +89,33 @@ addBtn.addEventListener("click",function () {
         showTodo("all");
     }
 });
+
+
+// Search
+const searchInput = document.querySelector(".search input");
+searchInput.addEventListener("input", function () {
+    let searchQuery = searchInput.value.trim();
+    showMatch( searchQuery);
+});
+
+// search functionality
+function showMatch( searchQuery) {
+    let li = "";
+    if (todos) {
+        todos.forEach((todo, id) => {
+            
+            let isCompleted =todo.status == "completed" ? "checked" : "";
+
+            // Check if the task name includes the search query
+            if (todo.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+                li += `<li class="task">
+                        <label for="${id}">
+                            <p class="${isCompleted}">${todo.name}</p>
+                            <input onclick="updateStatus(this)" type="checkbox" id="${id}"${isCompleted}>
+                        </label>
+                    </li>`;
+            }
+        });
+    }
+    taskBox.innerHTML = li || `<h2>No matching tasks found.</h2>`;
+}
