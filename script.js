@@ -2,24 +2,43 @@ const taskInput =document.querySelector(".task-input input");
 taskBox=document.querySelector(".task-box");
 addBtn=document.getElementById("add");
 
+filters=document.querySelectorAll(".filters span");
+
 let todos=JSON.parse(localStorage.getItem("todo-list"));//getting local storage todo-list
 
-function showTodo(){
+filters.forEach(btn => {
+    btn.addEventListener("click",()=>{
+        //console.log(btn);
+        document.querySelector("span.active").classList.remove("active");
+        btn.classList.add("active");
+        showTodo(btn.id)
+    })   
+})
+
+//Display todo lists
+function showTodo(view){
     let li="";
     if(todos){
         todos.forEach((todo,id)=> {
             //console.log(id,todo);
-            li+=`<li class="task">
-                    <label for="${id}">
-                        <p>${todo.name}</p>
-                        <input onclick="updateStatus(this)" type="checkbox" id="${id}">
-                    </label>
-                </li>`;
+            let isCompleted =todo.status == "completed" ? "checked" : "";
+
+            //add list according to view/filter
+            if(view == todo.status || view == "all"){
+                li+=`<li class="task">
+                        <label for="${id}">
+                            <p class="${isCompleted}">${todo.name}</p>
+                            <input onclick="updateStatus(this)" type="checkbox" id="${id}"${isCompleted}>
+                        </label>
+                    </li>`;
+            }
         });
     }
-    taskBox.innerHTML =li;
+    //display h2 if li is empty
+    taskBox.innerHTML =li || `<h2>You don't have any tasks yet. Create a new one.</h2>`;
 }
-showTodo();
+showTodo("all");
+
 
 //When checkbox is clicked
 function updateStatus(selected){
@@ -39,6 +58,7 @@ function updateStatus(selected){
     localStorage.setItem("todo-list",JSON.stringify(todos));
 }
 
+
 //When task is added in text box
 taskInput.addEventListener("keyup", e => {
     let userTask =taskInput.value.trim();
@@ -51,7 +71,7 @@ taskInput.addEventListener("keyup", e => {
         let taskInfo={name:userTask,status:"pending"};
         todos.push(taskInfo);
         localStorage.setItem("todo-list",JSON.stringify(todos));
-        showTodo();
+        showTodo("all");
     }
 });
 
@@ -66,6 +86,6 @@ addBtn.addEventListener("click",function () {
         let taskInfo={name:userTask,status:"pending"};
         todos.push(taskInfo);
         localStorage.setItem("todo-list",JSON.stringify(todos));
-        showTodo();
+        showTodo("all");
     }
 });
